@@ -9,7 +9,7 @@ import {
 const RouteConfig = () => (
     <Router>
         <Route exact path="/" component={App} />
-        <Route path="/work" component={Work} />
+        <Route exact path="/work" component={Work} />
     </Router>
 );
 
