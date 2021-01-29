@@ -1,26 +1,19 @@
-import {getUser,save} from './APILogin'
+import { findOne, authenticate } from './LoginAPI'
 
 const nothing = () => {
-} 
-
-//do validation on user data
-const saveUser = (data)  => {
-     console.log(data);
-    // getUser(data);
-    save(data);
 }
 
-export {saveUser};
+//do validation on user data
+const authenticateUser = (data) => {
+    console.log(data);
+    findOne(data).then(result => {
+        console.log('User found successfully.!! ', result);
+        authenticate(result).then(auth => {
+            console.log('Auth .!! ', auth.data);
+            localStorage.setItem('token', auth.data.token);
+        });
+    }).catch(err => { console.log(err); })
+}
+
+export { authenticateUser };
 export default nothing;
-
-
-
-
-
-
-
-
-
-
-
-

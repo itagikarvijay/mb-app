@@ -1,7 +1,13 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 export default function Work() {
     return (
-        <h1>Working.... </h1>
+
+        <div>
+            <h1>Working.... </h1>
+            <Link to="/register">Create User</Link>
+        </div>
+
     )
 }
