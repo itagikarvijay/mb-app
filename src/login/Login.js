@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import "bootstrap/dist/css/bootstrap.css"
-import { authenticateUser } from './LoginCtrl'
-import { Redirect, Link } from "react-router-dom";
+import { findUser } from './LoginCtrl'
+import { Redirect } from "react-router-dom";
 
 function Login() {
     const { register, handleSubmit, errors } = useForm();
     const [isNextView, setNextView] = useState(false);
 
+    const [valid, setValid] = useState('');
+
+    useEffect(() => {
+        console.log('I have been called.!');
+    }, [valid]);
+
     const onSubmit = data => {
-        authenticateUser(data);
-        setNextView(true);
+        findUser(data).then(response => {
+            console.log('response', response)
+            if (typeof response === 'boolean') {
+                setNextView(true);
+            } else {
+                setValid(`${response}, Please try with valid user name & password.!`);
+            }
+        });
     }
     return (
         <div className="container">
@@ -48,8 +60,7 @@ function Login() {
                                 className={`form-control ${errors.password ? "is-invalid" : ""
                                     }`}
                                 ref={register({
-                                    required: "Password is required.!",
-                                    validate: value => value.length > 3 
+                                    required: "Password is required.!"
                                 })}
                             />
                             <ErrorMessage className="invalid-feedback" name="password" as="div" errors={errors} />
@@ -58,11 +69,9 @@ function Login() {
                     <div className="form-row">
                         <div className="col">
                             <button className="btn btn-primary" type="submit">Submit</button>
-                            <div>
-                                <Link to="/register">Create User</Link>
-                            </div>
                         </div>
                     </div>
+                    {valid}
                 </form>
                 )}
         </div>

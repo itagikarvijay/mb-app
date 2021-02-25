@@ -1,13 +1,15 @@
 import axios from '../config/AxiosConfig'
 
-const findOne = async (data) => {
-    console.log('LoginAPI - findOne', data)
-    return await axios.getData('login/findOne', data)
+const find = async (data) => {
+    console.log('LoginAPI - find User', data)
+    return await axios.postData('user/find', data)
 }
 
 const authenticate = async (data) => {
-    console.log('LoginAPI - authenticate', data)
-    return await axios.getToken('login/token', data)
+    console.log('LoginAPI - Authenticate User', data)
+    return await axios.postData('login', data)
 }
 
-export { findOne, authenticate }
+
+
+export { find, authenticate }

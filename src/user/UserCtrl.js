@@ -1,7 +1,11 @@
 import { save } from "./UserAPI";
 
-const saveUser = (data) =>{
-    save(data);
+const saveUser = (data) => {
+    return save(data)
 }
 
-export {saveUser}
+const validate = () => {
+    return 'errorMessage';
+}
+
+export { saveUser, validate }
