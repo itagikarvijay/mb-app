@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
 import reportWebVitals from './reportWebVitals';
-import RouteConfig from '../src/config/RouteConfig';
-
+// import RouteConfig from '../src/config/RouteConfig';
+import { Provider } from "react-redux";
+import store from "./app-store/store";
+// import Work from './work/Work';
+import  App  from "./App";
 ReactDOM.render(
   <React.StrictMode>
-    <RouteConfig />
-  </React.StrictMode>,
+    <Provider store={store}>
+      {/* <RouteConfig /> */}
+      <App />
+    </Provider>
+  </React.StrictMode>
+
+  ,
   document.getElementById('root')
 );
 

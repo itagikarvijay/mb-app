@@ -1,29 +1,21 @@
 import { find, authenticate } from './LoginAPI'
 
-const nothing = () => {
-}
-
-const findUser = async (data) => {
+const LoginCtrl = async (data) => {
     console.log('findUser', data);
-    let findUser$result = false;
-    let findUser$Message = '';
-    await find(data).then(response => {
-        console.log('Result', response.data)
-        findUser$Message = response.data;
-        if (response.data === true) {
-            console.log('if part')
-            findUser$result = true;
-            authenticate(data).then(result => {
-                console.log('User found successfully.!! ', result);
-                localStorage.setItem('token', result.data);
-            }).catch(err => { console.log(err); })
-        }
-    }).catch(error => {
+    let response = await find(data).catch(error => {
         console.log('error Value', error.response);
-        findUser$Message = error.response;
+        // findUser$Message = error.response;
     });
-    return findUser$result ? findUser$result : findUser$Message;
+    console.log('result', response);
+    if (response.data.found === true) {
+        // findUser$result = true;
+        await authenticate(data).then(result => {
+            console.log('User found successfully.!! ', result);
+            response.data.token = result.data;
+            localStorage.setItem('token', result.data);
+        }).catch(err => { console.log(err); })
+    }
+    console.log('done')
+    return response;
 }
-
-export { findUser };
-export default nothing;
+export default LoginCtrl;

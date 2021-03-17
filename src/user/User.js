@@ -2,15 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import "bootstrap/dist/css/bootstrap.css"
-import { saveUser } from '../user/UserCtrl'
+import { saveUser, userRoles } from '../user/UserCtrl'
+import {
+} from 'react-redux'
+import { Label } from 'reactstrap';
 
 export default function User() {
+
     const { register, handleSubmit, errors } = useForm();
     const [valid, setValid] = useState('');
+    const [roles, setRoles] = useState({});
 
     useEffect(() => {
-        console.log('I have been called.!');
+        console.log('valid updated.!');
     }, [valid]);
+
+    useEffect(() => {
+        console.log('fecthing user roles!');
+        userRoles().then(response => {
+            console.log("ROLES", response);
+            setRoles(response.data)
+        });
+    }, []);
 
     const onSubmit = (data) => {
         console.log('Submitting form.!', data);
@@ -26,10 +39,14 @@ export default function User() {
 
     return (
         <div className="container">
-            <h4>Create User</h4>
-            <div>
+            <div style={{
+                backgroundColor: "white", width: "60%", marginLeft: "20%", marginRight: "5%", marginTop: "2%"
+            }}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
+                        <div className="col">
+                            <Label for="name">Name</Label>
+                        </div>
                         <div className="col">
                             <input
                                 name="name"
@@ -40,10 +57,12 @@ export default function User() {
                                 })}
                             />
                             <ErrorMessage className="invalid-feedback" name="name" as="div" errors={errors} />
-                          
                         </div>
                     </div>
                     <div className="row">
+                        <div className="col">
+                            <Label for="password">Passord</Label>
+                        </div>
                         <div className="col">
                             <input
                                 name="password"
@@ -56,7 +75,21 @@ export default function User() {
                             <ErrorMessage className="invalid-feedback" name="password" as="div" errors={errors} />
                         </div>
                     </div>
-                    <button className="btn btn-primary" type="submit">Submit</button>
+                    <div className="row">
+                        {
+                            Object.keys(roles).map((item, index) => {
+                                let rName = roles[item].role;
+                                let roleId = roles[item].id;
+                                return (
+                                    <div  className="col" key={index}>
+                                        <div>{rName}</div>
+                                        <div> <input value={roleId} type="checkbox" key={index} ref={register}  name="roles" /></div>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                    <button className="btn btn-primary" type="submit">Save</button>
                     <p>{valid}</p>
                 </form>
             </div>

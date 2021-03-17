@@ -1,11 +1,16 @@
-import { save } from "./UserAPI";
+import { save, fetchAllRoles } from "./UserAPI";
 
-const saveUser = (data) => {
-    return save(data)
+const saveUser = async (data) => {
+    return await save(data);
+}
+
+const userRoles = async (data) => {
+    return await fetchAllRoles(data);
 }
 
 const validate = () => {
     return 'errorMessage';
 }
 
-export { saveUser, validate }
+export { validate, saveUser, userRoles }
+

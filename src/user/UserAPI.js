@@ -4,14 +4,14 @@ const nothing = () => {
 }
 
 const save = async (data) => {
-    console.log('userAPI', localStorage.getItem('token'))
+    console.log('userAPI', data)
     return await axios.postDataWithToken('user/register', data);
-        // .then(result => {
-        //     console.log(result);
-        // }).catch(error => {
-        //     console.log('error', error.response.status)
-        // });
 }
 
-export { save };
+const fetchAllRoles = async (data) => {
+    console.log('fetchAllRoles ', data)
+    return await axios.getDataWithToken('role/fetchAllRole', data);
+}
+
+export { save, fetchAllRoles };
 export default nothing;

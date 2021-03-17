@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import "bootstrap/dist/css/bootstrap.css"
-import { findUser } from './LoginCtrl'
+import LoginCtrl from './LoginCtrl'
 import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../app-store/actions/loginAction";
 
 function Login() {
     const { register, handleSubmit, errors } = useForm();
@@ -11,17 +13,20 @@ function Login() {
 
     const [valid, setValid] = useState('');
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         console.log('I have been called.!');
     }, [valid]);
 
     const onSubmit = data => {
-        findUser(data).then(response => {
+        LoginCtrl(data).then(response => {
             console.log('response', response)
-            if (typeof response === 'boolean') {
+            if (response.data.found) {
                 setNextView(true);
+                dispatch(loginAction(response.data));
             } else {
-                setValid(`${response}, Please try with valid user name & password.!`);
+                setValid(`${response.data.login_failuer_message} Please try with valid user name & password.!`);
             }
         });
     }
@@ -70,6 +75,7 @@ function Login() {
                         <div className="col">
                             <button className="btn btn-primary" type="submit">Submit</button>
                         </div>
+                        {/* onClick={() => dispatch(LoginAction('Moto'))} */}
                     </div>
                     {valid}
                 </form>
