@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchAllCustomerDetails, saveCustomer } from './CustomerCtrl'
+import { fetchAllCustomerDetails, saveCustomer, fetchAllCustomerType } from './CustomerCtrl'
 import { useDispatch, useStore } from "react-redux";
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
@@ -11,6 +11,7 @@ function Customer() {
     const [message, setMessage] = useState('Loading content...');
     const [errorMessage, setErrorMessage] = useState('');
     const [isActive, setIsActive] = useState(true);
+    const [partyTypes, setPartyTypes] = useState([]);
 
     const dispatch = useDispatch();
 
@@ -34,6 +35,7 @@ function Customer() {
                 setValue("createByUser", customerFromStore[item].id)
                 setValue("updatedByUser", customerFromStore[item].updatedByUser)
                 setValue("inactive", customerFromStore[item].inactive)
+                setValue("partyType", customerFromStore[item].partyType.id)
             }
         });
     }, [customer]);
@@ -48,6 +50,15 @@ function Customer() {
         }).catch(error => {
             setIsActive(false);
             setErrorMessage(error.response.data.message)
+        });
+        console.log('fecthing customer type.!');
+        fetchAllCustomerType().then(response => {
+            console.log(response);
+            let values = [];
+            for(const val of response.data){
+                values.push(<option key={val.id} value={val.id}>{val.name}</option>)
+            }
+            setPartyTypes(values);
         });
     }, []);
     const customerFromStore = useStore().getState().customerReducer.customerList;
@@ -118,6 +129,20 @@ function Customer() {
                                 {errors.name && (
                                     <p className="errorMsg">{errors.name.message}</p>
                                 )}
+                            </div>
+                        </div>
+                        {/* Party Type */}
+                        <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
+                            <div className="col-6" style={{ fontWeight: 'bold' }}>
+                                <label>Party Type</label>
+                            </div>
+                            <div className="col-6">
+                                <select ref={register()} name="partyType">
+                                    {partyTypes}
+                                    {/* <option value="Customer">Customer</option>
+                                    <option selected value="Customer-Supplier">Customer-Supplier</option>
+                                    <option value="Supplier">Supplier</option> */}
+                                </select>
                             </div>
                         </div>
                         {/* Mobile No */}

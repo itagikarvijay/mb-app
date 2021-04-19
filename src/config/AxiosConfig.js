@@ -1,7 +1,7 @@
 import axios from 'axios'
 // Create instance called instance
 const instance = axios.create({
-    baseURL: 'http://localhost:9090/api/v1'
+    baseURL: ' http://c75bcef2b15f.ngrok.io/api/v1'
     // headers: {
     //     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjEzNzU1Mzg3fQ.OIB4CPXGTkW3XcXZ_kJfaGwyORs77-nh1qVdfOs-0tv0LZfx8ukZYwQPFEg9-ePhRlfkgmSER4aZ6KKQRbQQ2Q'
     // }
@@ -34,11 +34,12 @@ const axiosCopnfig = {
             method: 'PATCH',
             url: url,
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem("token"),
+                'Content-Type': 'application/json-patch+json',
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
             },
             data: data
         }),
-    putDataWithToken: (url, data) =>
+    putDataWithToken: (url, data) =>        
         instance({
             method: 'PUT',
             url: url,
@@ -47,7 +48,7 @@ const axiosCopnfig = {
             },
             data: data
         }),
-    getDataWithToken: (url, data) =>
+    getDataWithToken: (url) =>
         instance({
             method: 'GET',
             url: url,

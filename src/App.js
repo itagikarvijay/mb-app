@@ -13,6 +13,7 @@ import Navbar from "./header/Navbar"
 import Work from './work/Work'
 import User from './user/User'
 import Login from "./login/Login";
+import Product from "./products/Product";
 import Logout from "./logout/Logout";
 import Customer from "./customer/Customer";
 import { useStore } from 'react-redux'
@@ -35,6 +36,7 @@ function App() {
               <Route path="/work" component={Work} />
               <Route path="/register" component={User} />
               <Route path="/customer" component={Customer} />
+              <Route path="/product" component={Product} />
               <Route path="/logout" component={Logout} />
             </Switch>
           }
