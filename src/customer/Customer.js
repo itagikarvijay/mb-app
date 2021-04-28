@@ -16,7 +16,6 @@ function Customer() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('Customer changed')
         Object.keys(customerFromStore).map((item, index) => {
             if (customer === customerFromStore[item].name) {
                 setValue("id", customerFromStore[item].id)
@@ -41,7 +40,6 @@ function Customer() {
     }, [customer]);
 
     useEffect(() => {
-        console.log('fecthing user customer!');
         fetchAllCustomerDetails().then(response => {
             for (const value of response.data) {
                 dispatch(customerAction(value));
@@ -51,11 +49,10 @@ function Customer() {
             setIsActive(false);
             setErrorMessage(error.response.data.message)
         });
-        console.log('fecthing customer type.!');
         fetchAllCustomerType().then(response => {
             console.log(response);
             let values = [];
-            for(const val of response.data){
+            for (const val of response.data) {
                 values.push(<option key={val.id} value={val.id}>{val.name}</option>)
             }
             setPartyTypes(values);
@@ -65,7 +62,6 @@ function Customer() {
     const { register, handleSubmit, errors, setValue } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
         setIsActive(true);
         setErrorMessage('');
         setMessage('Saving content...')
@@ -107,11 +103,11 @@ function Customer() {
                             name="id"
                             ref={register()}
                         />
-                        <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
-                            <div className="col-6" style={{ fontWeight: 'bold' }}>
+                        <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
+                            <div className="p-2" style={{ fontWeight: 'bold' }}>
                                 <label>Name</label>
                             </div>
-                            <div className="col-6">
+                            <div className="p-2">
                                 <input
                                     type="text"
                                     name="name"
@@ -132,25 +128,22 @@ function Customer() {
                             </div>
                         </div>
                         {/* Party Type */}
-                        <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
-                            <div className="col-6" style={{ fontWeight: 'bold' }}>
+                        <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
+                            <div className="p-2" style={{ fontWeight: 'bold' }}>
                                 <label>Party Type</label>
                             </div>
-                            <div className="col-6">
+                            <div className="p-2">
                                 <select ref={register()} name="partyType">
                                     {partyTypes}
-                                    {/* <option value="Customer">Customer</option>
-                                    <option selected value="Customer-Supplier">Customer-Supplier</option>
-                                    <option value="Supplier">Supplier</option> */}
                                 </select>
                             </div>
                         </div>
                         {/* Mobile No */}
-                        <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
-                            <div className="col-6" style={{ fontWeight: 'bold' }}>
+                        <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
+                            <div className="p-2" style={{ fontWeight: 'bold' }}>
                                 <label for="mobileNo" >Mobile No</label>
                             </div>
-                            <div className="col-6">
+                            <div className="p-2">
                                 <input
                                     type="text"
                                     name="mobileNo"
@@ -171,11 +164,11 @@ function Customer() {
                             </div>
                         </div>
                     </div>
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
+                        <div className="p-2" style={{ fontWeight: 'bold' }}>
                             <label>Email Id</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="email"
                                 name="email"
@@ -196,11 +189,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* Addr 1 */}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
+                        <div className="p-2" style={{ fontWeight: 'bold' }}>
                             <label>Address(1)</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="text"
                                 name="addr1"
@@ -211,11 +204,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* Addr 2 */}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
+                        <div className="p-2" style={{ fontWeight: 'bold' }}>
                             <label>Address(2)</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="text"
                                 name="addr2"
@@ -226,11 +219,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* City */}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'right' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
+                        <div className="p-2" style={{ fontWeight: 'bold', textAlign: 'right' }}>
                             <label>City</label>
                         </div>
-                        <div className="col-*-6">
+                        <div className="p-2">
                             <input
                                 type="text"
                                 name="city"
@@ -241,11 +234,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* Pin code */}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'right' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
+                        <div className="p-2" style={{ fontWeight: 'bold', textAlign: 'right' }}>
                             <label>Pin code</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="text"
                                 name="pinCode"
@@ -256,11 +249,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* GSTIN */}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'right' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
+                        <div className="p-2" style={{ fontWeight: 'bold', textAlign: 'right' }}>
                             <label>GSTIN</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="text"
                                 name="gstin"
@@ -271,11 +264,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* STATE ID */}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
-                        <div className="col-6">
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
+                        <div className="p-2">
                             <label style={{ fontWeight: 'bold', textAlign: 'right' }}>State Id</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="text"
                                 name="stateid"
@@ -286,11 +279,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* START DATE */}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'right' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
+                        <div className="p-" style={{ fontWeight: 'bold', textAlign: 'right' }}>
                             <label>Start Date</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="date"
                                 name="startDate"
@@ -301,11 +294,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* OB AMT */}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
-                        <div className="col-6">
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
+                        <div className="p-2">
                             <label style={{ fontWeight: 'bold', textAlign: 'right' }}>Ob/Amt.</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="text"
                                 name="obAmount"
@@ -316,11 +309,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* CREATE DATE */}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'right' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
+                        <div className="p-2" style={{ fontWeight: 'bold', textAlign: 'right' }}>
                             <label>Crated Date</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="date"
                                 name="createDate"
@@ -331,11 +324,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* CREATE BY USER*/}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'right' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavender', marginTop: '10px' }}>
+                        <div className="p-2" style={{ fontWeight: 'bold', textAlign: 'right' }}>
                             <label>Created By</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="text"
                                 name="createByUser"
@@ -346,11 +339,11 @@ function Customer() {
                         </div>
                     </div>
                     {/* UPDATED BY USER*/}
-                    <div className="row" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
-                        <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'right' }}>
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ paddingLeft: "5px", backgroundColor: 'lavenderblush', marginTop: '10px' }}>
+                        <div className="p-2" style={{ fontWeight: 'bold', textAlign: 'right' }}>
                             <label>Updated By</label>
                         </div>
-                        <div className="col-6">
+                        <div className="p-2">
                             <input
                                 type="text"
                                 name="updatedByUser"
@@ -361,19 +354,19 @@ function Customer() {
                         </div>
                     </div>
                     {/* ACTIVE */}
-                    <div style={{ fontSize: '15px', fontWeight: 'bold', textAlign: 'left' }}>
-                        <label for="inactive">Active</label>&nbsp;
-                        <input style={{ size: '20px' }}
-                            type="checkbox"
-                            name="inactive"
-                            className="form-control"
-                            ref={register()}
-                        />
+                    <div className="d-flex flex-row text-black justify-content-around" style={{ fontSize: '15px', fontWeight: 'bold', textAlign: 'left' }}>
+                        <div className="p-2">
+                            <label for="inactive">Active</label>&nbsp;
+                        </div>
+                        <div className="p-2">
+                            <input style={{ size: '20px' }}
+                                type="checkbox"
+                                name="inactive"
+                                ref={register()}
+                            />
+                        </div>
                     </div>
-                    <div className="row"><hr></hr></div>
-                    <Button variant="primary" type="submit">
-                        Save
-                            </Button>
+                    <Button variant="primary" type="submit">Save</Button>
                     <span style={{ color: 'red' }}>{errorMessage}</span>
                 </Form>
             </LoadingOverlay>

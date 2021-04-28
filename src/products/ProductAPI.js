@@ -13,7 +13,7 @@ const findAll = async (data) => {
     });
 }
 
-const loadAll = async (data) => {
+const loadAll = async () => {
     console.log('loadAllProducts')
     return await axios.getDataWithTokenAndRequestParams('product/findAll');
 }

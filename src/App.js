@@ -17,6 +17,7 @@ import Product from "./products/Product";
 import Logout from "./logout/Logout";
 import Customer from "./customer/Customer";
 import { useStore } from 'react-redux'
+import Invoice from './invoice/Invoice';
 
 function App() {
   const logIn = useStore().getState().appReducer['logIn'];
@@ -37,6 +38,7 @@ function App() {
               <Route path="/register" component={User} />
               <Route path="/customer" component={Customer} />
               <Route path="/product" component={Product} />
+              <Route path="/invoice" component={Invoice} />
               <Route path="/logout" component={Logout} />
             </Switch>
           }

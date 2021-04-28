@@ -1,7 +1,7 @@
 import axios from 'axios'
 // Create instance called instance
 const instance = axios.create({
-    baseURL: ' http://c75bcef2b15f.ngrok.io/api/v1'
+    baseURL: ' http://8a75cd268506.ngrok.io/api/v1'
     // headers: {
     //     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjEzNzU1Mzg3fQ.OIB4CPXGTkW3XcXZ_kJfaGwyORs77-nh1qVdfOs-0tv0LZfx8ukZYwQPFEg9-ePhRlfkgmSER4aZ6KKQRbQQ2Q'
     // }

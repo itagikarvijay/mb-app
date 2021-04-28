@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import store from "./app-store/store";
 // import Work from './work/Work';
-import  App  from "./App";
+import App from "./App";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -15,7 +15,6 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>
-
   ,
   document.getElementById('root')
 );

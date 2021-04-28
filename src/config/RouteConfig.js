@@ -7,6 +7,7 @@ import {
     BrowserRouter as Router,
     Route,
 } from "react-router-dom";
+import Invoice from '../invoice/invoice';
 
 const RouteConfig = () => (
     <Router>
@@ -14,6 +15,7 @@ const RouteConfig = () => (
         <Route path="/work" component={Work} />
         <Route path="/register" component={User} />
         <Route path="/product" component={Product} />
+        <Route path="/invoice" component={Invoice} />
     </Router>
 );
 

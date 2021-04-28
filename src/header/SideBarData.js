@@ -21,7 +21,13 @@ export const SideBarData = [
         path: '/product',
         icon: <FaIcons.FaProductHunt/>,
         cName: 'nav-text'
-    },    
+    },
+    {
+        title: 'Invoice',
+        path: '/invoice',
+        icon: <FaIcons.FaFileInvoice/>,
+        cName: 'nav-text'
+    },        
     {
         title: 'Settings',
         path: '/',

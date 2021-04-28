@@ -15,7 +15,7 @@ function fetchAllProductCategories() {
 function fetchAllProducts(data) {
     if (Object.keys(data).length === 0) {
         console.log('Data zero ',data)
-        return loadAll(data)
+        return loadAll()
     } else {
         console.log('Data not zero ',data)
         return findAll(data)

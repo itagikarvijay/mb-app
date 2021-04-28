@@ -6,6 +6,8 @@ import LoginCtrl from './LoginCtrl'
 import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../app-store/actions/loginAction";
+import { ErrorBoundary } from 'react-error-boundary'
+import  ErrorFallback  from '../error/error'
 
 function Login() {
     const { register, handleSubmit, errors } = useForm();
@@ -31,6 +33,8 @@ function Login() {
         });
     }
     return (
+        <ErrorBoundary
+        FallbackComponent={ErrorFallback}>
         <div className="container">
             {isNextView ? (< Redirect to="/work" />) :
                 (<form onSubmit={handleSubmit(onSubmit)}>
@@ -81,6 +85,7 @@ function Login() {
                 </form>
                 )}
         </div>
+        </ErrorBoundary>
     );
 }
 
